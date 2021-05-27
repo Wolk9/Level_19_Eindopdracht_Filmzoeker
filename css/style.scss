@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,500,700");
+
+$basicbackgroundcolor: #3f899e;
+
+/* Global */
+
+* {
+  font-family: raleway;
+  color: lightgray;
+}
+
+h1 {
+  text-align: center;
+}
+
+body {
+  background-color: $basicbackgroundcolor;
+}

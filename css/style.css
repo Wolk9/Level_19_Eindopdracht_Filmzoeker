@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,500,700");
+/* Global */
+* {
+  font-family: raleway;
+  color: lightgray;
+}
+
+h1 {
+  text-align: center;
+}
+
+body {
+  background-color: #3f899e;
+}/*# sourceMappingURL=style.css.map */
