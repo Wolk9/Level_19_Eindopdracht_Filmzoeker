@@ -1,24 +1,35 @@
-// console.log(movies);
+const movieListGet = document.querySelector("#film-list");
 
-// let btnGet = document.querySelector("label, value");
-// let input = document.querySelector("input");
-// let result = document.querySelector("film-list");
+const sel = "X-Men";
 
-// btnGet.addEventListener("click", () => {
-//   let value = input.value;
-//   result.innerHTML = Object.keys(movies).find((key) => movies[key] == value);
-//   console.log(value);
-// });
+const listNewestFilms = movies.filter((item) => item.Year > 2015);
+const listSelectedFilms = movies.forEach((item, index, array) => {
+  let li = document.createElement("li");
+  let line = movieListGet.appendChild(li);
+  line.innerHTML +=
+    "<img src='" +
+    item.Poster +
+    "' alt='" +
+    item.Title +
+    "'></img>" +
+    item.Title +
+    " " +
+    item.Year +
+    "<br>";
+});
 
-let keys = Object.keys(movies);
-//console.log("keys:", keys);
-let vals = Object.values(movies);
-// console.log("values:", vals);
-let entries = Object.entries(movies);
-//console.log("entries:", entries);
+// const selectedFilms = movies.flat(() =>
+//   movies.filter((item) => item.Title.includes(sel))
+// );
 
-//movies.forEach((number, index, array) => console.log(movies[4].Title));
+console.log(listNewestFilms);
 
-let selection = (selected) => {
-  for (i = 0; i < movies.length; i++) {}
-};
+// let selection = (selected) => {
+//   for (i = 0; i < movies.length; i++) {
+//     // const returnValue = movies.map((value, index, array) => {
+
+//     // }, thisArg)
+//   }
+// };
+
+const check = () => (document.getElementByID("x-men").checked = true);

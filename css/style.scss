@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,500,700");
 
-$basicbackgroundcolor: #3f899e;
+$basicbackgroundcolor: #5a0634;
+//#3f899e;
 
 /* Global */
 
@@ -15,4 +16,32 @@ h1 {
 
 body {
   background-color: $basicbackgroundcolor;
+}
+
+nav {
+  text-align: center;
+}
+
+img {
+  height: 220px;
+  max-width: 140px;
+  border-radius: 5px;
+  box-shadow: #000;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+li {
+  list-style: none;
+  width: 90%;
+  flex-grow: 2;
+  flex-shrink: 1;
+  flex-basis: auto;
+  align-self: center;
 }
