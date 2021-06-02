@@ -1,9 +1,24 @@
 const movieListGet = document.querySelector("#film-list");
+const genreSelect = document.querySelector("nav");
 
-const sel = "X-Men";
+genreSelect.onclick = function () {
+  const radioBtn = document.querySelector('input[name="genre"]:checked').value;
+  console.log(radioBtn);
+  makeMovieList(radioBtn);
+};
+
+const resultMoviesList = [];
+const makeMovieList = (selection) => {
+  for (a = 0; a < movies.length; a++) {
+    if (movies[a].Title.indexOf(selection) > -1) {
+      resultMoviesList.push(movies[a]);
+    }
+  }
+};
 
 const listNewestFilms = movies.filter((item) => item.Year > 2015);
-const listSelectedFilms = movies.forEach((item, index, array) => {
+
+const listSelectedFilms = resultMoviesList.forEach((item) => {
   let li = document.createElement("li");
   let line = movieListGet.appendChild(li);
   line.innerHTML +=
@@ -15,21 +30,9 @@ const listSelectedFilms = movies.forEach((item, index, array) => {
     item.Title +
     " " +
     item.Year +
-    "<br>";
+    " " +
+    item.Type +
+    " " +
+    item.imdbID;
+  ("<br>");
 });
-
-// const selectedFilms = movies.flat(() =>
-//   movies.filter((item) => item.Title.includes(sel))
-// );
-
-console.log(listNewestFilms);
-
-// let selection = (selected) => {
-//   for (i = 0; i < movies.length; i++) {
-//     // const returnValue = movies.map((value, index, array) => {
-
-//     // }, thisArg)
-//   }
-// };
-
-const check = () => (document.getElementByID("x-men").checked = true);
