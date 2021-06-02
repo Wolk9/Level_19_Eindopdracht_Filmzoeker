@@ -24,24 +24,26 @@ nav {
 
 img {
   height: 220px;
-  max-width: 140px;
+  min-width: 140px;
   border-radius: 5px;
   box-shadow: #000;
 }
 
 ul {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: nowrap;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
+  width: 95%;
 }
 
 li {
   list-style: none;
   width: 90%;
-  flex-grow: 2;
+  flex-grow: 1;
   flex-shrink: 1;
   flex-basis: auto;
-  align-self: center;
+  align-self: flex-start;
+  margin: 0px 5px;
 }
