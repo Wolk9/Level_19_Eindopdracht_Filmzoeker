@@ -3,27 +3,27 @@ let genreSelect = document.querySelector("nav");
 let genreSearch = document.querySelector("#search");
 let resultMoviesList = [];
 
-const makeMovieList = (choise) => {
-  console.log("in makeMovieList: " + choise);
+const makeMovieList = (choice) => {
+  console.log("in makeMovieList: " + choice);
 
-  if (choise != "nieuwste-films") {
+  if (choice === "nieuwste-films") {
+    resultMoviesList = movies.filter((item) => item.Year >= 2014);
+  } else {
     for (a = 0; a < movies.length; a++) {
-      if (movies[a].Title.indexOf(choise) > -1) {
+      if (movies[a].Title.indexOf(choice) > -1) {
         resultMoviesList.push(movies[a]);
       }
     }
-  } else if (choise == "zoek een titel") {
-    console.log("zoeken");
-  } else {
-    resultMoviesList = movies.filter((item) => item.Year > 2015);
   }
-  listSelectedFilms(choise);
+  listSelectedFilms(choice);
 };
 
 const listSelectedFilms = () => {
   resultMoviesList.forEach((item) => {
     let li = document.createElement("li");
+    let filmtitle = document.createElement("filmtitle");
     let line = movieListGet.appendChild(li);
+    let filmContainer = line.appendChild(filmtitle);
     line.innerHTML +=
       "<img src='" +
       item.Poster +
@@ -39,6 +39,7 @@ const listSelectedFilms = () => {
       item.imdbID;
     ("<br>");
   });
+  // reset list
   resultMoviesList = [];
 };
 
@@ -53,6 +54,8 @@ function selectBtn() {
   // call creating list according to selection
   makeMovieList(radioBtn);
 }
+
+/* Search field code */
 
 //setup before functions
 let typingTimer; //timer identifier
@@ -79,6 +82,8 @@ function doneTyping() {
 
   makeMovieList(myInput.value);
 }
+
+/* Clear existing list function */
 
 function clearList() {
   const parent = document.getElementById("film-list");
