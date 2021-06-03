@@ -1,174 +1,237 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,500,700");
+@import "mobile";
 
-$basicbackgroundcolor: #5a0634;
-$card-width: 160px;
-$card-heigth: 220px;
+@media (min-width: 732px) {
+  $basicbackgroundcolor: #5a0634;
+  $card-width: 200px;
+  $card-heigth: ($card-width * 1.375);
 
-//#3f899e;
+  //#3f899e;
 
-/* Global */
+  /* Global */
 
-* {
-  font-family: raleway;
-  color: lightgray;
-}
+  * {
+    font-family: raleway;
+    color: lightgray;
+  }
 
-h1 {
-  text-align: center;
-}
+  h1 {
+    text-align: center;
+  }
 
-body {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  grid-template-rows: auto auto auto;
-  grid-template-areas:
-    "header nav header"
-    "main main main"
-    "footer footer footer";
-  background-color: $basicbackgroundcolor;
-}
+  body {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "header nav header"
+      "main main main"
+      "footer footer footer";
+    background-color: $basicbackgroundcolor;
+  }
 
-header {
-  grid-area: header;
-  position: fixed;
-  top: 0px;
-  width: 100%;
-  background-color: black;
-}
+  header {
+    grid-area: header;
+    position: fixed;
+    top: 0px;
+    left: 0;
+    height: fit-content;
+    width: 100%;
+    background-color: black;
+    z-index: 2000;
+  }
 
-nav {
-  grid-area: nav;
-  text-align: center;
-  background-color: black;
-  height: 80px;
-}
+  nav {
+    grid-area: nav;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+    background-color: black;
+    height: fit-content;
+    line-height: 2.5em;
+    margin: 0px 40px;
+  }
 
-main {
-  margin-top: 50px;
-  grid-area: main;
-}
+  nav > label {
+    margin-right: 20px;
+    margin-left: 5px;
+  }
 
-.film-card-front > img {
-  height: $card-heigth;
-  width: $card-width;
-  border-radius: 10px;
-}
+  nav > .select {
+    margin-inline-start: 20px;
+    margin-inline-end: 20px;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: center;
+    font-size: 1.3em;
+  }
 
-ul {
-  display: flex;
-  margin-top: 150px;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
+  nav > .search {
+    order: 99;
+    flex-grow: 6;
+    flex-shrink: 3;
+    flex-basis: content;
+    align-self: center;
+    font-size: 1.2em;
+  }
 
-li {
-  list-style: none;
-}
+  nav > input {
+    padding: 5px;
+    font-size: 1.2em;
+  }
 
-.film-card {
-  width: $card-width;
-  height: $card-heigth;
-  margin: 5px;
-  background-color: transparent;
-  perspective: 1000px;
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: 1;
-  align-self: flex-start;
-}
+  #search {
+    color: black;
+    font-size: 1em;
+    padding-left: 10px;
+    margin-bottom: 25px;
+  }
 
-/* This container is needed to position the front and back side */
-.film-card-inner {
-  // transform-style: preserve-3d;
-  text-align: center;
-  position: relative;
-  transition: transform 1s;
-  transform-style: preserve-3d;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
+  main {
+    margin-top: 50px;
+    grid-area: main;
+  }
 
-/* Do an horizontal flip when you move the mouse over the flip box container */
-.film-card:hover .film-card-inner {
-  transform: rotateY(180deg);
-}
+  .film-card-front > img {
+    height: $card-heigth;
+    width: $card-width;
+    border-radius: 10px;
+  }
 
-/* Position the front and back side */
-.film-card-front,
-.film-card-back {
-  position: absolute;
-  height: $card-heigth;
-  width: $card-width;
-  border-radius: 10px;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
+  ul {
+    display: flex;
+    margin-top: 150px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
 
-/* Style the front side (fallback if image is missing) */
-.film-card-front {
-}
+  li {
+    list-style: none;
+  }
 
-/* Style the back side */
-.film-card-back {
-  text-align: center;
-  background-color: black;
-  transform: rotateY(-180deg);
-}
+  .film-card {
+    width: $card-width;
+    height: $card-heigth;
+    margin: 5px;
+    background-color: transparent;
+    perspective: 1000px;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 1;
+    align-self: flex-start;
+  }
 
-.film-card-back > .imdb-bttn {
-  border-radius: 0px 0px 10px 10px;
-  height: 40px;
-  background-color: blue;
-}
+  /* This container is needed to position the front and back side */
+  .film-card-inner {
+    // transform-style: preserve-3d;
+    text-align: center;
+    position: relative;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
 
-.film-card-title {
-  font-size: 18px;
-  margin-top: 50px;
-  margin-right: 5%;
-  margin-left: 5%;
-}
+  /* Do an horizontal flip when you move the mouse over the flip box container */
+  .film-card:hover .film-card-inner {
+    transform: rotateY(180deg);
+  }
 
-.film-card-year {
-  position: absolute;
-  text-align: right;
-  padding: 5px;
-  top: -25px;
-  right: -5px;
-  background-color: yellow;
-  color: black;
-  font-weight: 700;
-  transform: rotate(10deg);
-  opacity: 0.9;
-  z-index: 300;
-}
+  /* Position the front and back side */
+  .film-card-front,
+  .film-card-back {
+    position: absolute;
+    height: $card-heigth;
+    width: $card-width;
+    border-radius: 10px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    cursor: pointer;
+  }
 
-.film-card-type {
-  position: absolute;
-  text-align: left;
-  padding-left: 5px;
-  padding-top: 10px;
-  background-color: indigo;
-  color: white;
-  width: 100%;
-  height: 30px;
-  top: -20px;
-  border-radius: 10px 10px 0px 0px;
-  z-index: 280;
-}
+  /* Style the front side (fallback if image is missing) */
+  .film-card-front {
+  }
 
-/* --------------------- */
+  /* Style the back side */
+  .film-card-back {
+    text-align: center;
+    background-color: black;
+    transform: rotateY(-180deg);
+  }
 
-footer {
-  grid-area: footer;
-  position: fixed;
-  bottom: 0px;
-  left: 0px;
-  width: 100%;
-  z-index: 900;
-  background-color: black;
-}
+  .film-card-back > button {
+    position: absolute;
+    border-radius: 0px 0px 10px 10px;
+    height: fit-content;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    background-color: blue;
+    border: 0px solid blue;
+    align-items: center;
+    padding: 5px;
+    cursor: help;
+  }
 
-footer > p {
-  text-align: center;
+  button > a {
+    cursor: help;
+    text-decoration: none;
+  }
+
+  .film-card-title {
+    font-size: 18px;
+    margin-top: 50px;
+    margin-right: 5%;
+    margin-left: 5%;
+  }
+
+  .film-card-year {
+    position: absolute;
+    text-align: right;
+    padding: 5px;
+    top: -25px;
+    right: -5px;
+    background-color: yellow;
+    color: black;
+    font-weight: 700;
+    transform: rotate(10deg);
+    opacity: 0.9;
+    z-index: 300;
+  }
+
+  .film-card-type {
+    position: absolute;
+    text-align: left;
+    padding-left: 10px;
+    padding-top: 10px;
+    background-color: indigo;
+    color: white;
+    width: ($card-width - 20px);
+    height: 30px;
+    top: -20px;
+    border-radius: 10px 10px 0px 0px;
+    z-index: 280;
+  }
+
+  /* --------------------- */
+
+  footer {
+    grid-area: footer;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 900;
+    background-color: black;
+  }
+
+  footer > p {
+    text-align: center;
+  }
 }

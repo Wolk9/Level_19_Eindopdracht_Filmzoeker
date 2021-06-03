@@ -14,22 +14,75 @@ body {
   grid-template-columns: auto auto auto;
   grid-template-rows: auto auto auto;
   grid-template-areas: "header nav header" "main main main" "footer footer footer";
-  background-color: #5a0634;
+  background-color: orange;
 }
 
 header {
   grid-area: header;
   position: fixed;
   top: 0px;
+  left: 0;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   width: 100%;
   background-color: black;
+  z-index: 2000;
 }
 
 nav {
   grid-area: nav;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
   text-align: center;
   background-color: black;
-  height: 80px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  line-height: 2.5em;
+  margin: 0px 40px;
+}
+
+nav > label {
+  margin-right: 10px;
+  margin-left: 5px;
+}
+
+nav > .select {
+  -webkit-margin-start: 20px;
+          margin-inline-start: 20px;
+  -webkit-margin-end: 20px;
+          margin-inline-end: 20px;
+  flex-grow: 2;
+  flex-shrink: 1;
+  flex-basis: content;
+  align-self: center;
+  font-size: 1.3em;
+}
+
+nav > .search {
+  order: 99;
+  flex-grow: 6;
+  flex-shrink: 3;
+  flex-basis: content;
+  align-self: center;
+  font-size: 1.2em;
+}
+
+nav > input {
+  padding: 5px;
+  font-size: 1.2em;
+}
+
+#search {
+  color: black;
+  font-size: 1em;
+  padding-left: 10px;
+  margin-bottom: 25px;
+  margin-top: 25px;
 }
 
 main {
@@ -38,14 +91,14 @@ main {
 }
 
 .film-card-front > img {
-  height: 220px;
-  width: 160px;
+  height: 192.5px;
+  width: 140px;
   border-radius: 10px;
 }
 
 ul {
   display: flex;
-  margin-top: 150px;
+  margin-top: 210px;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -57,8 +110,8 @@ li {
 }
 
 .film-card {
-  width: 160px;
-  height: 220px;
+  width: 140px;
+  height: 192.5px;
   margin: 5px;
   background-color: transparent;
   perspective: 1000px;
@@ -86,11 +139,12 @@ li {
 .film-card-front,
 .film-card-back {
   position: absolute;
-  height: 220px;
-  width: 160px;
+  height: 192.5px;
+  width: 140px;
   border-radius: 10px;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  cursor: pointer;
 }
 
 /* Style the front side (fallback if image is missing) */
@@ -101,10 +155,25 @@ li {
   transform: rotateY(-180deg);
 }
 
-.film-card-back > .imdb-bttn {
+.film-card-back > button {
+  position: absolute;
   border-radius: 0px 0px 10px 10px;
-  height: 40px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 100%;
+  bottom: 0;
+  left: 0;
   background-color: blue;
+  border: 0px solid blue;
+  align-items: center;
+  padding: 5px;
+  cursor: help;
+}
+
+button > a {
+  cursor: help;
+  text-decoration: none;
 }
 
 .film-card-title {
@@ -131,11 +200,13 @@ li {
 .film-card-type {
   position: absolute;
   text-align: left;
-  padding-left: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
   padding-top: 10px;
   background-color: indigo;
   color: white;
-  width: 100%;
+  font-weight: 500;
+  width: 120px;
   height: 30px;
   top: -20px;
   border-radius: 10px 10px 0px 0px;
@@ -155,4 +226,233 @@ footer {
 
 footer > p {
   text-align: center;
+  font-size: 10pt;
+}
+
+@media (min-width: 732px) {
+  /* Global */
+  * {
+    font-family: raleway;
+    color: lightgray;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  body {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: "header nav header" "main main main" "footer footer footer";
+    background-color: #5a0634;
+  }
+
+  header {
+    grid-area: header;
+    position: fixed;
+    top: 0px;
+    left: 0;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    width: 100%;
+    background-color: black;
+    z-index: 2000;
+  }
+
+  nav {
+    grid-area: nav;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+    background-color: black;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    line-height: 2.5em;
+    margin: 0px 40px;
+  }
+
+  nav > label {
+    margin-right: 20px;
+    margin-left: 5px;
+  }
+
+  nav > .select {
+    -webkit-margin-start: 20px;
+            margin-inline-start: 20px;
+    -webkit-margin-end: 20px;
+            margin-inline-end: 20px;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: center;
+    font-size: 1.3em;
+  }
+
+  nav > .search {
+    order: 99;
+    flex-grow: 6;
+    flex-shrink: 3;
+    flex-basis: content;
+    align-self: center;
+    font-size: 1.2em;
+  }
+
+  nav > input {
+    padding: 5px;
+    font-size: 1.2em;
+  }
+
+  #search {
+    color: black;
+    font-size: 1em;
+    padding-left: 10px;
+    margin-bottom: 25px;
+  }
+
+  main {
+    margin-top: 50px;
+    grid-area: main;
+  }
+
+  .film-card-front > img {
+    height: 275px;
+    width: 200px;
+    border-radius: 10px;
+  }
+
+  ul {
+    display: flex;
+    margin-top: 150px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  .film-card {
+    width: 200px;
+    height: 275px;
+    margin: 5px;
+    background-color: transparent;
+    perspective: 1000px;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 1;
+    align-self: flex-start;
+  }
+
+  /* This container is needed to position the front and back side */
+  .film-card-inner {
+    text-align: center;
+    position: relative;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Do an horizontal flip when you move the mouse over the flip box container */
+  .film-card:hover .film-card-inner {
+    transform: rotateY(180deg);
+  }
+
+  /* Position the front and back side */
+  .film-card-front,
+.film-card-back {
+    position: absolute;
+    height: 275px;
+    width: 200px;
+    border-radius: 10px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    cursor: pointer;
+  }
+
+  /* Style the front side (fallback if image is missing) */
+  /* Style the back side */
+  .film-card-back {
+    text-align: center;
+    background-color: black;
+    transform: rotateY(-180deg);
+  }
+
+  .film-card-back > button {
+    position: absolute;
+    border-radius: 0px 0px 10px 10px;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    background-color: blue;
+    border: 0px solid blue;
+    align-items: center;
+    padding: 5px;
+    cursor: help;
+  }
+
+  button > a {
+    cursor: help;
+    text-decoration: none;
+  }
+
+  .film-card-title {
+    font-size: 18px;
+    margin-top: 50px;
+    margin-right: 5%;
+    margin-left: 5%;
+  }
+
+  .film-card-year {
+    position: absolute;
+    text-align: right;
+    padding: 5px;
+    top: -25px;
+    right: -5px;
+    background-color: yellow;
+    color: black;
+    font-weight: 700;
+    transform: rotate(10deg);
+    opacity: 0.9;
+    z-index: 300;
+  }
+
+  .film-card-type {
+    position: absolute;
+    text-align: left;
+    padding-left: 10px;
+    padding-top: 10px;
+    background-color: indigo;
+    color: white;
+    width: 180px;
+    height: 30px;
+    top: -20px;
+    border-radius: 10px 10px 0px 0px;
+    z-index: 280;
+  }
+
+  /* --------------------- */
+  footer {
+    grid-area: footer;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 900;
+    background-color: black;
+  }
+
+  footer > p {
+    text-align: center;
+  }
 }/*# sourceMappingURL=style.css.map */

@@ -4,7 +4,7 @@ let genreSearch = document.querySelector("#search");
 let resultMoviesList = [];
 
 movies.forEach(function (item) {
-  let filmURL = "<a href='https://www.imdb.com/title/" + item.imdbID + "'/>";
+  let filmURL = "https://www.imdb.com/title/" + item.imdbID + "/";
   item.ImdbURL = filmURL;
 });
 
@@ -62,11 +62,13 @@ const listSelectedFilms = () => {
     let filmCardImdbIDClass = document.createElement("button");
     filmCardImdbIDClass.className += "film-card-ImdbID";
     let filmCardImdbID = filmCardBack.appendChild(filmCardImdbIDClass);
-
     filmCardTitle.innerHTML += item.Title;
     filmCardYear.innerHTML += item.Year;
     filmCardType.innerHTML += item.Type;
-    filmCardImdbID.innerHTML += item.imdbID;
+    filmCardImdbID.innerHTML +=
+      "<a href='" +
+      item.ImdbURL +
+      "' target='_blank'>Klik hier voor meer info<br>over deze film op www.imdb.com</a>";
   });
   // reset list
   resultMoviesList = [];
