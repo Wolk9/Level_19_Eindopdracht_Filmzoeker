@@ -3,6 +3,11 @@ let genreSelect = document.querySelector("nav");
 let genreSearch = document.querySelector("#search");
 let resultMoviesList = [];
 
+movies.forEach(function (item) {
+  let filmURL = "<a href='https://www.imdb.com/title/" + item.imdbID + "'/>";
+  item.ImdbURL = filmURL;
+});
+
 const makeMovieList = (choice) => {
   console.log("in makeMovieList: " + choice);
 
@@ -21,23 +26,47 @@ const makeMovieList = (choice) => {
 const listSelectedFilms = () => {
   resultMoviesList.forEach((item) => {
     let li = document.createElement("li");
-    let filmtitle = document.createElement("filmtitle");
-    let line = movieListGet.appendChild(li);
-    let filmContainer = line.appendChild(filmtitle);
-    line.innerHTML +=
-      "<img src='" +
-      item.Poster +
-      "' alt='" +
-      item.Title +
-      "'></img>" +
-      item.Title +
-      " " +
-      item.Year +
-      " " +
-      item.Type +
-      " " +
-      item.imdbID;
-    ("<br>");
+    let filmLi = movieListGet.appendChild(li);
+
+    let filmCardDiv = document.createElement("div");
+    filmCardDiv.className += "film-card";
+    let filmCard = filmLi.appendChild(filmCardDiv);
+
+    let filmCardInnerDiv = document.createElement("div");
+    filmCardInnerDiv.className += "film-card-inner";
+    let filmCardInner = filmCard.appendChild(filmCardInnerDiv);
+
+    let filmCardFrontDiv = document.createElement("div");
+    filmCardFrontDiv.className += "film-card-front";
+    let filmCardFront = filmCardInner.appendChild(filmCardFrontDiv);
+
+    filmCardFront.innerHTML +=
+      "<img src='" + item.Poster + "' alt='" + item.Title + "'></img>";
+
+    let filmCardBackDiv = document.createElement("div");
+    filmCardBackDiv.className += "film-card-back";
+    let filmCardBack = filmCardInner.appendChild(filmCardBackDiv);
+
+    let filmCardTitleClass = document.createElement("h3");
+    filmCardTitleClass.className += "film-card-title";
+    let filmCardTitle = filmCardBack.appendChild(filmCardTitleClass);
+
+    let filmCardYearClass = document.createElement("p");
+    filmCardYearClass.className += "film-card-year";
+    let filmCardYear = filmCardBack.appendChild(filmCardYearClass);
+
+    let filmCardTypeClass = document.createElement("p");
+    filmCardTypeClass.className += "film-card-type";
+    let filmCardType = filmCardBack.appendChild(filmCardTypeClass);
+
+    let filmCardImdbIDClass = document.createElement("button");
+    filmCardImdbIDClass.className += "film-card-ImdbID";
+    let filmCardImdbID = filmCardBack.appendChild(filmCardImdbIDClass);
+
+    filmCardTitle.innerHTML += item.Title;
+    filmCardYear.innerHTML += item.Year;
+    filmCardType.innerHTML += item.Type;
+    filmCardImdbID.innerHTML += item.imdbID;
   });
   // reset list
   resultMoviesList = [];

@@ -1,6 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,500,700");
 
 $basicbackgroundcolor: #5a0634;
+$card-width: 160px;
+$card-heigth: 220px;
+
 //#3f899e;
 
 /* Global */
@@ -16,8 +19,8 @@ h1 {
 
 body {
   display: grid;
-  grid-template-columns: 50px auto 50px;
-  grid-template-rows: 250px auto 100px;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto auto;
   grid-template-areas:
     "header nav header"
     "main main main"
@@ -29,26 +32,26 @@ header {
   grid-area: header;
   position: fixed;
   top: 0px;
-
   width: 100%;
-  background-color: $basicbackgroundcolor;
+  background-color: black;
 }
 
 nav {
   grid-area: nav;
   text-align: center;
-  background-color: $basicbackgroundcolor;
+  background-color: black;
+  height: 80px;
 }
 
 main {
+  margin-top: 50px;
   grid-area: main;
 }
 
-img {
-  height: 220px;
-  min-width: 140px;
-  border-radius: 5px;
-  box-shadow: #000;
+.film-card-front > img {
+  height: $card-heigth;
+  width: $card-width;
+  border-radius: 10px;
 }
 
 ul {
@@ -56,23 +59,111 @@ ul {
   margin-top: 150px;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  // align-items: flex-start;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 li {
   list-style: none;
+}
+
+.film-card {
+  width: $card-width;
+  height: $card-heigth;
+  margin: 5px;
+  background-color: transparent;
+  perspective: 1000px;
   flex-grow: 1;
   flex-shrink: 1;
-  flex-basis: auto;
+  flex-basis: 1;
   align-self: flex-start;
-  margin: 0px 5px;
 }
+
+/* This container is needed to position the front and back side */
+.film-card-inner {
+  // transform-style: preserve-3d;
+  text-align: center;
+  position: relative;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.film-card:hover .film-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.film-card-front,
+.film-card-back {
+  position: absolute;
+  height: $card-heigth;
+  width: $card-width;
+  border-radius: 10px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.film-card-front {
+}
+
+/* Style the back side */
+.film-card-back {
+  text-align: center;
+  background-color: black;
+  transform: rotateY(-180deg);
+}
+
+.film-card-back > .imdb-bttn {
+  border-radius: 0px 0px 10px 10px;
+  height: 40px;
+  background-color: blue;
+}
+
+.film-card-title {
+  font-size: 18px;
+  margin-top: 50px;
+  margin-right: 5%;
+  margin-left: 5%;
+}
+
+.film-card-year {
+  position: absolute;
+  text-align: right;
+  padding: 5px;
+  top: -25px;
+  right: -5px;
+  background-color: yellow;
+  color: black;
+  font-weight: 700;
+  transform: rotate(10deg);
+  opacity: 0.9;
+  z-index: 300;
+}
+
+.film-card-type {
+  position: absolute;
+  text-align: left;
+  padding-left: 5px;
+  padding-top: 10px;
+  background-color: indigo;
+  color: white;
+  width: 100%;
+  height: 30px;
+  top: -20px;
+  border-radius: 10px 10px 0px 0px;
+  z-index: 280;
+}
+
+/* --------------------- */
 
 footer {
   grid-area: footer;
   position: fixed;
   bottom: 0px;
+  left: 0px;
   width: 100%;
   z-index: 900;
   background-color: black;
